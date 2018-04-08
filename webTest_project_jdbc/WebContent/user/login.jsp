@@ -22,7 +22,7 @@
 	<p style="color:red;font-weight:900">${msg }</p>
 	<form action='<c:url value="/LoginServlet"/>' method="post">
 		用户名：<input type="text" name="username" />${login_errors.username }<br /> 
-		密码 :  <input type="text" name="password" />${login_errors.password }<br />
+		密码 :  <input type="password" name="password" />${login_errors.password }<br />
 		验证码: <input type="text" name="verifycode" size="3"/>
 		<img  id="login_vcode" src="<c:url value='/VerifyServlet'/>" border="2"/>
 		<a href="javascript:_change()">看不清，换一张</a>${login_errors.verifycode }<br/>
