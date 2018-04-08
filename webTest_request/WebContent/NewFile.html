@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<a href="/webTest_request/Servlet_protect">防盗链</a>
+	<br />
+	<h1>测试请求参数</h1>
+	<br />
+	<a href="/webTest_request/Servlet_parameter?xxx=XXX&yyy=YYY">点击这里</a>
+	<hr/>
+	<form action="/webTest_request/Servlet_parameter" method="post">
+		用户名：<input type="text" name="username"/><br/>
+		密码： <input type="text" name="password"/><br/>
+		爱好： <input type="checkbox" name="hobby" value="eat"/>吃饭
+		<input type="checkbox" name="hobby" value="sleep"/>睡觉
+		<input type="checkbox" name="hobby" value="coding"/>编程
+		<br/>
+		<input type="submit" value="提交"/>
+	</form>
+</body>
+</html>

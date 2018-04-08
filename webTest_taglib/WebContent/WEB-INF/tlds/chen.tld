@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
+    
+  <tlib-version>1.0</tlib-version>
+  <short-name>chen</short-name>
+  <uri>http://www.chen.cn/tags/tag_1</uri>
+<tag>
+	<name>myTag</name>
+	<tag-class>cn.chen.tag.MyTag</tag-class>
+	<body-content>empty</body-content>
+</tag>
+<tag>
+	<name>myTag2</name>
+	<tag-class>cn.chen.tag.MyTag_2</tag-class>
+	<body-content>empty</body-content>
+</tag>
+<tag>
+	<name>myTag3</name>
+	<tag-class>cn.chen.tag.MyTag_3</tag-class>
+	<body-content>scriptless </body-content>
+</tag>
+<tag>
+	<name>myTag4</name>
+	<tag-class>cn.chen.tag.MyTag_4</tag-class>
+	<body-content>empty </body-content>
+</tag>
+<tag>
+	<name>myTag5</name>
+	<tag-class>cn.chen.tag.MyTag_5</tag-class>
+	<body-content>scriptless</body-content>
+	<attribute>
+		<name>test</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+</tag>
+</taglib>
