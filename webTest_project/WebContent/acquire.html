@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>需求分析</title>
+</head>
+<body>
+	<h2>需求分析</h2>
+<pre>
+JSP:    
+	login.jsp       登录
+	regist.jsp      注册
+	index.jsp       主页，登录后可见
+Servlet:
+	LoginServlet
+	RegistServlet    封装表单数据到user对象中，调用service的regist
+	                                   若成功，给出成功信息；若失败，失败信息通过request转发到regist.jsp
+Service:
+	UserService    检验用户是否已注册/添加用户
+	                              如注册失败，抛出异常，在异常中添加异常信息(自定义异常类)
+DAO:
+	UserDao       在数据库中查询用户对象/插入用户到数据库中                  
+Domain:
+	User:    (既要对应数据库，又要对应表单)
+		username
+		password
+		verifycode
+</pre><br/>
+<pre>
+	登录功能
+	login.jsp--->登陆表单
+	
+	LoginServlet:获取表单数据，封装到User中
+				 调用service的login方法，传递form
+				 若login方法没有抛出异常，返回一个User对象，将此user保存到session，重定向到index.jsp
+				 若有异常，则获取异常信息，保存到request域，保存form，转发到login.jsp
+			
+</pre>
+		
+<h2>步骤</h2>
+<pre>
+1.创建空项目
+2.导包
+	commonUtils
+	commons-beanutils
+	commons-logging
+	dom4j
+3.建包
+	cn.chen.user.domains
+	cn.chen.user.dao
+	cn.chen.user.service
+	cn.chen.user.servlet
+4.在本地创建user.xml作为数据库
+</pre>
+</body>
+</html>
