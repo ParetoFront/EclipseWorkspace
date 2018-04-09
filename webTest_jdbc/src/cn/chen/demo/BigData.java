@@ -11,12 +11,14 @@ import java.sql.ResultSet;
 
 import javax.sql.rowset.serial.SerialBlob;
 
-import org.apache.commons.io.IOUtils; 
+import org.apache.commons.io.IOUtils;
+
+import cn.chen.jdbcUtils.jdbcUtils1; 
 
 public class BigData {
 	
 	public void saveToSql() throws Exception {
-		Connection con=JdbcUtils.getConnection();
+		Connection con=jdbcUtils1.getConnection();
 		String sql="insert into bigdata values(?,?,?)";
 		PreparedStatement pstmt=con.prepareStatement(sql);
 		pstmt.setInt(1, 1);
@@ -28,7 +30,7 @@ public class BigData {
 		pstmt.executeUpdate();
 	}
 	public void readFromSql() throws Exception {
-		Connection con=JdbcUtils.getConnection();
+		Connection con=jdbcUtils1.getConnection();
 		String sql="select * from bigdata where filename=?";
 		PreparedStatement pstmt=con.prepareStatement(sql);
 		pstmt.setString(1, "music1");

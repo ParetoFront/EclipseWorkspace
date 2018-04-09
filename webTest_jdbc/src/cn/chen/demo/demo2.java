@@ -11,7 +11,7 @@ public class demo2 {
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con=(Connection) DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/mydatabase_1?usePrepStmts=true&cachePrepStmt=true",
-				"root", "cky1994918");
+				"root", "1234");
 		String sql="select * from stu where num=? and name=?";
 		PreparedStatement pstmt=(PreparedStatement) con.clientPrepareStatement(sql);
 		pstmt.setInt(1, 0003);

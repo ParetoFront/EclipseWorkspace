@@ -9,13 +9,15 @@ import org.junit.Test;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import cn.chen.jdbcUtils.jdbcUtils1;
+
 public class demo1 {
 	@Test
 	public void fun1() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url="jdbc:mysql://localhost:3306/mydatabase_1";
 		String username="root";
-		String password="123";
+		String password="1234";
 		Connection con=(Connection) DriverManager.getConnection(url,username,password);
 		//实现增删改查
 		//通过connection创建statement
@@ -48,7 +50,7 @@ public class demo1 {
 	}
 	@Test
 	public void fun3() throws Exception {
-		Connection con=(Connection) JdbcUtils.getConnection();
+		Connection con=(Connection) jdbcUtils1.getConnection();
 		System.out.println(con);
 	}
 }

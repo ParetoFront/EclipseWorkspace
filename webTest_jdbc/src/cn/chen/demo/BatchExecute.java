@@ -3,9 +3,11 @@ package cn.chen.demo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import cn.chen.jdbcUtils.jdbcUtils1;
+
 public class BatchExecute {
 	public static void main(String[] args) throws Exception {
-		Connection con = JdbcUtils.getConnection();
+		Connection con = jdbcUtils1.getConnection();
 		String sql="insert into stu_test values(?,?)";
 		PreparedStatement pstmt=con.prepareStatement(sql);
 		for(int i=0;i<1000;i++) {
