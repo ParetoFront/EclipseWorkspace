@@ -30,30 +30,21 @@
 		<th>描述</th>
 		<th>操作</th>
 	</tr>
+<c:forEach items="${requestScope.cstmList }" var="cstm">
 	<tr>
-		<td>张三</td>
-		<td>男</td>
-		<td>2013-05-05</td>
-		<td>13899996666</td>
-		<td>zhangSan@163.com</td>
-		<td>张三是谁？</td>
+		<td>${cstm.cname }</td>
+		<td>${cstm.gender }</td>
+		<td>${cstm.birthday }</td>
+		<td>${cstm.cellphone }</td>
+		<td>${cstm.email }</td>
+		<td>${cstm.description }</td> 
 		<td>
-			<a href="<c:url value='/edit.jsp'/>">编辑</a>
-			<a href="<c:url value='/msg.jsp'/>">删除</a>
+		<!-- 每个“编辑“链接都带有独特的cid用于表明编辑对象  -->
+			<a href="<c:url value='/CustomerServlet?method=preEdit&cid=${cstm.cid }'/>">编辑</a>
+			<a href="<c:url value='/CustomerServlet?method=delete&cid=${cstm.cid }'/>">删除</a>
 		</td>
 	</tr>
-	<tr>
-		<td>张三</td>
-		<td>男</td>
-		<td>2013-05-05</td>
-		<td>13899996666</td>
-		<td>zhangSan@163.com</td>
-		<td>张三是谁？</td>
-		<td>
-			<a href="<c:url value='/edit.jsp'/>">编辑</a>
-			<a href="<c:url value='/msg.jsp'/>">删除</a>
-		</td>
-	</tr>
+	</c:forEach>
 </table>
   </body>
 </html>

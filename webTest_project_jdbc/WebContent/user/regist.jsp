@@ -21,6 +21,7 @@
 	<p style="color:red;font-weight:900">${msg }</p>
 	<!-- ${pageContext.request.contextPath }/RegistServlet -->
 	<form action='<c:url value="/RegistServlet"/>' method="post">
+
 		用户名：<input type="text" name="username" />${regist_errors.username }<br /> 
 		密码 :  <input type="text" name="password" />${regist_errors.password }<br />
 		验证码: <input type="text" name="verifycode" size="3"/>

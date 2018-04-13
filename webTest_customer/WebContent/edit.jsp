@@ -57,12 +57,15 @@
   
   <body>
 <h3 align="center">编辑客户</h3>
-<form action="<c:url value='/msg.jsp'/>" method="post">
+<form action="<c:url value='/CustomerServlet'/>" method="post">
+<!-- 增加提交给edit的参数，包括method和cid -->
+<input type="hidden" name="method" value="edit"/>
+<input type="hidden" name="cid" value="${cstm.cid }" />
 <table border="0" align="center" width="40%" style="margin-left: 100px;">
 	<tr>
 		<td width="100px">客户名称</td>
 		<td width="40%">
-			<input type="text" name="cname"/>
+			<input type="text" name="cname" value=${cstm.cname } />
 		</td>
 		<td align="left">
 			<label id="cnameError" class="error">&nbsp;</label>
@@ -71,9 +74,10 @@
 	<tr>
 		<td>客户性别</td>
 		<td>
-			<input type="radio" name="gender" value="男" id="male"/>
-			<label for="male">男</label>
-			<input type="radio" name="gender" value="女" id="female"/>
+		<!-- 回显！！！！！！！！！！！ -->
+			<input type="radio" name="gender" value="男" id="male" <c:if test="${cstm.gender eq '男' }">checked='checked'</c:if> />
+			<label for="male">男</label> 
+			<input type="radio" name="gender" value="女" id="female"<c:if test="${cstm.gender eq '女' }">checked='checked'</c:if>/>
 			<label for="female">女</label>
 		</td>
 		<td>
@@ -83,7 +87,7 @@
 	<tr>
 		<td>客户生日</td>
 		<td>
-			<input type="text" name="birthday" id="birthday" readonly="readonly"/>
+			<input type="text" name="birthday" id="birthday" readonly="readonly" value=${cstm.birthday } />
 		</td>
 		<td>
 			<label id="birthdayError" class="error">&nbsp;</label>
@@ -92,7 +96,7 @@
 	<tr>
 		<td>手机</td>
 		<td>
-			<input type="text" name="cellphone"/>
+			<input type="text" name="cellphone" value=${cstm.cellphone } />
 		</td>
 		<td>
 			<label id="cellphoneError" class="error">&nbsp;</label>
@@ -101,7 +105,7 @@
 	<tr>
 		<td>邮箱</td>
 		<td>
-			<input type="text" name="email"/>
+			<input type="text" name="email" value=${cstm.email } />
 		</td>
 		<td>
 			<label id="emailError" class="error">&nbsp;</label>
@@ -110,7 +114,7 @@
 	<tr>
 		<td>描述</td>
 		<td>
-			<textarea rows="5" cols="30" name="description"></textarea>
+			<textarea rows="5" cols="30" name="description">${cstm.description }</textarea>
 		</td>
 		<td>
 			<label id="descriptionError" class="error">&nbsp;</label>

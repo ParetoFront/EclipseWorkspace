@@ -64,7 +64,7 @@ public class Customer {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
 	public Customer(String cid, String cname, String gender, String birthday, String cellphone, String email,
 			String description) {
 		super();
@@ -76,7 +76,7 @@ public class Customer {
 		this.email = email;
 		this.description = description;
 	}
-
+	
 	public Customer() {
 		super();
 	}
