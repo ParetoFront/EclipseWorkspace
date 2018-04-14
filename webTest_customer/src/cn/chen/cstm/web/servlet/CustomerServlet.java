@@ -32,7 +32,7 @@ public class CustomerServlet extends BaseServlet {
 		//调用service层
 		customerService.add(customer);
 		request.setAttribute("msg", "恭喜，添加成功");
-		return "f:/jsp/msg.jsp";
+		return "f:/msg.jsp";
 	}
 	public String findAll(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
@@ -57,11 +57,12 @@ public class CustomerServlet extends BaseServlet {
 		return "f:/msg.jsp";
 		
 	}
-	public String delete(HttpServletRequest request, HttpServletResponse response)
+	public String query(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception{
-		customerService.delete((String)request.getParameter("cid"));
-		request.setAttribute("msg", "恭喜，删除成功");
-		return "f:/msg.jsp";
-		
+		Customer criteria=new Customer();
+		BeanUtils.populate(criteria,request.getParameterMap());
+		List<Customer> cstmList=customerService.query(criteria);
+		request.setAttribute("cstmList", cstmList);
+		return "f:/list.jsp";
 	}
 }

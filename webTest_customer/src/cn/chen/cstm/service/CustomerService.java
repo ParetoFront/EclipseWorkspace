@@ -23,4 +23,7 @@ public class CustomerService {
 	public void delete(String cid) {
 		customerDao.delete(cid);
 	}
+	public List<Customer> query(Customer criteria) {
+		return customerDao.query(criteria);
+	}
 }

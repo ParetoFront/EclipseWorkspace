@@ -6,11 +6,19 @@ import cn.chen.cstm.domain.Customer;
 import cn.itcast.commons.CommonUtils;
 
 public class DaoTest {
-	private CustomerDao dao=new CustomerDao();
-	Customer c=new Customer("11111","mike","男","1994","1312222","qqmail","hello");
 	@Test
-	public void fun1() {
-		c.setCid(CommonUtils.uuid());
-		dao.add(c);
+	public void fun() {
+		CustomerDao dao=new CustomerDao();
+		for(int i=0;i<=300;i++) {
+			Customer c=new Customer();
+			c.setCid(CommonUtils.uuid());
+			c.setCname("cstm_"+i);
+			c.setBirthday("2018-4-14");
+			c.setGender(i%2==0?"男":"女");
+			c.setCellphone("131"+i);
+			c.setEmail("cstm_"+i+"@qq.com");
+			c.setDescription("我是客户 "+i+" 号");
+			dao.add(c);
+		}
 	}
 }
