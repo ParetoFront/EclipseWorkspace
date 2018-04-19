@@ -21,13 +21,13 @@ public class IP_count_Filter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		ServletContext application=fConfig.getServletContext();
-		Map<String,Integer> map=(Map<String, Integer>) application.getAttribute("map");
-		String ip=request.getRemoteAddr();
-		if(map.containsKey(ip)) {
-			int cnt=map.ge                                                                                                                                                                                                                                                                                             t(ip);
-			map.put(ip, cnt+1);
-		}else {
+		ServletContext application = fConfig.getServletContext();
+		Map<String, Integer> map = (Map<String, Integer>) application.getAttribute("map");
+		String ip = request.getRemoteAddr();
+		if (map.containsKey(ip)) {
+			int cnt = map.get(ip);
+			map.put(ip, cnt + 1);
+		} else {
 			map.put(ip, 1);
 		}
 		application.setAttribute("map", map);
@@ -35,10 +35,10 @@ public class IP_count_Filter implements Filter {
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		this.fConfig=fConfig;
+		this.fConfig = fConfig;
 	}
 
 	public void destroy() {
-		
+
 	}
 }

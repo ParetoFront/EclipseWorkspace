@@ -9,10 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>您是普通游客</h1><br/>
-<h1>欢迎访问，您的ip访问次数将被记录</h1><br/>
-
-<a href="<c:url value='/user/user.jsp' />" >会员入口</a><br/>
+<h1>欢迎普通会员登录</h1>
+<a href="<c:url value='/index.jsp' />" >游客入口</a><br/>
 <a href="<c:url value='/admin/admin.jsp' />" >管理员入口</a>
 </body>
 </html>
