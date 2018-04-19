@@ -4,14 +4,15 @@ import java.util.List;
 
 import cn.chen.cstm.dao.CustomerDao;
 import cn.chen.cstm.domain.Customer;
+import cn.chen.cstm.domain.PageBean;
 
 public class CustomerService {
 	private CustomerDao customerDao=new CustomerDao();
 	public void add(Customer c) {
 		customerDao.add(c);
 	}
-	public List<Customer> findAll() {
-		return customerDao.findAll();
+	public PageBean<Customer> findAll(int pc,int ps) {
+		return customerDao.findAll(pc,ps);
 	}
 	public Customer load(String cid) {
 		return customerDao.load(cid);
@@ -23,7 +24,8 @@ public class CustomerService {
 	public void delete(String cid) {
 		customerDao.delete(cid);
 	}
-	public List<Customer> query(Customer criteria) {
-		return customerDao.query(criteria);
+	public PageBean<Customer> query(Customer criteria, int ps, int pc) {
+		return customerDao.query(criteria,ps,pc);
 	}
+	
 }

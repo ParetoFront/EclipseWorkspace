@@ -19,7 +19,10 @@
   
   <body>
 <h3 align="center">高级搜索</h3>
-<form action="<c:url value='/CustomerServlet'/>" method="post">
+<!-- 改post为get,因为在多重查询结果展示时我们都要点击页码显示新的查询结果，
+此时需要附带查询条件，解决方案是将这些条件放在get请求中的url中，
+然而超链接中无法设置请求方式，默认是get，为了统一，表单也改为get方式 -->
+<form action="<c:url value='/CustomerServlet'/>" method="get">
 <input type="hidden" name="method" value="query"/>
 <table border="0" align="center" width="40%" style="margin-left: 100px;">
 	<tr>

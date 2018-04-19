@@ -30,7 +30,7 @@
 		<th>描述</th>
 		<th>操作</th>
 	</tr>
-<c:forEach items="${requestScope.cstmList }" var="cstm">
+<c:forEach items="${pb.beanList }" var="cstm">
 	<tr>
 		<td>${cstm.cname }</td>
 		<td>${cstm.gender }</td>
@@ -46,5 +46,58 @@
 	</tr>
 	</c:forEach>
 </table>
+<center>
+	第 ${pb.pc } 页 /共 ${pb.tp } 页
+	<!--  <a href="<c:url value='/CustomerServlet?method=findAll&pc=1'/> ">首页</a> -->
+	<a href="${pb.url }&pc=1">首页</a>
+	<!-- 若当前为第一页，则上一页失效（不显示为超链接） -->
+	<c:choose>
+		<c:when test="${pb.pc>1 }">
+			<a href="${pb.url }&pc=${pb.pc-1 }">上一页</a>
+		</c:when>
+		<c:when test="${pb.pc==1 }">
+			上一页
+		</c:when>
+	</c:choose>
+	<!-- 计算页码列表的begin、end -->
+	<c:choose>
+		<c:when test="${pb.tp<=10 }">
+			<c:set var="begin" value="1"/>
+			<c:set var="end" value="${pb.tp }"/>
+		</c:when>
+		<c:otherwise>
+			<c:set var="begin" value="${pb.pc-5 }"/>
+			<c:set var="end" value="${pb.pc+4 }"/>
+			<c:if test="${begin<1 }">
+				<c:set var="begin" value="1"/>
+				<c:set var="end" value="10"/>
+			</c:if>
+			<c:if test="${end>pb.tp }">
+				<c:set var="begin" value="${pb.tp-9 }"/>
+				<c:set var="end" value="${pb.tp }"/>
+			</c:if>
+		</c:otherwise>
+	</c:choose>
+	<!-- 显示页码列表， 当前页不显示为超链接  -->
+	<c:forEach var="i" begin="${begin }" end="${end }">
+		<c:choose>
+			<c:when test="${i eq pb.pc }">
+				[${i }]
+			</c:when>
+			<c:otherwise>
+				<a href="${pb.url }&pc=${i }"> [${i }] </a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<c:choose>
+		<c:when test="${pb.pc<pb.tp }">
+			<a href="${pb.url }&pc=${pb.pc+1 }">下一页</a>
+		</c:when>
+		<c:when test="${pb.pc==pb.tp }">
+			下一页
+		</c:when>
+	</c:choose>
+	<a href="${pb.url }&pc=${pc.tp }">尾页</a>
+</center>
   </body>
 </html>
