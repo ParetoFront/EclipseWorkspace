@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1>注册</h1>
+${requestScope.msg } 
 <form action="<c:url value='/UploadServlet'/>" method="post" enctype="multipart/form-data">
 	用户名： <input type="text" name="username"/><br/>
 	 照  片：<input type="file" name="photo"/><br/>
