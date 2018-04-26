@@ -1,30 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 本例演示如何在表单提交前校验用户是否已注册  
+    方法：在用户名输入框添加onblur监听 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	window.onload = function() { //文档加载完毕后触发
-		var btn = document.getElementById("btn");
-		btn.onclick = function() {
-			//进行ajax四部操作
-			//1. 获取异步对象 
+
+	window.onload = function() { 
+		var userEle = document.getElementById("username");
+		//失去焦点的事件监听 
+		userEle.onblur = function() {
 			var xmlHttp = createXMLHttpRequest();
-			//2. 打开与服务器的连接
-			xmlHttp.open("GET", "<c:url value='/AServlet'/>", true);
-			//3. 发送请求
-			xmlHttp.send(null);
+			xmlHttp.open("POST", "<c:url value='/CheckServlet'/>", true);
+			xmlHttp.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded");
+			//4. 发送参数 
+			xmlHttp.send("username="+userEle.value);
 			// 4.注册监听器
 			xmlHttp.onreadystatechange = function() {
 				//双重判断，要求服务器响应完毕且服务器响应的状态码为成功  
 				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 					var text = xmlHttp.responseText;
-					var hi = document.getElementById("hi");
-					hi.innerHTML = text;
+					var span = document.getElementById("errorSpan");
+					span.innerHTML = text;
 				}
 			};
 		};
@@ -49,7 +51,11 @@
 </script>
 </head>
 <body>
-	<button id="btn">用get请求方式异步获取资源</button>
-	<h1 id="hi"></h1>
+<h1>演示用户名是否已被注册</h1>
+<form action="" method="post">
+	用户名：<input type="text" name="username" id="username"/><span id="errorSpan"></span><br/>
+	密码： <input type="text" name="password" id="password"/><br/>
+	<input type="submit" value="注册"/>
+</form>
 </body>
 </html>

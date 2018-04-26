@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<china>
+	<province name="北京">
+		<city>东城区</city>
+		<city>西城区</city>
+		<city>朝阳区</city>
+	</province>
+	<province name="浙江">
+		<city>嘉兴市</city>
+		<city>绍兴市</city>
+		<city>平湖市</city>
+		<city>杭州市</city>
+	</province>
+	<province name="天津">
+		<city>红桥区</city>
+		<city>塘沽区</city>
+		<city>南开区</city>
+	</province>
+</china>
