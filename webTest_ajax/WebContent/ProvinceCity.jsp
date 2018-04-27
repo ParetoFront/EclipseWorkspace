@@ -14,17 +14,54 @@
 		xmlHttp.onreadystatechange = function() {
 			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 				var text = xmlHttp.responseText;
-				var arr=text.split(",");
-				for(var i=0;i<arr.length;i++){   //遍历所有province
-					var opt=document.createElement("option");
-					opt.value=arr[i];  //设置opt的实际值
-					var textNode=document.createTextNode(arr[i]); //创建一个文本子节点
-					opt.appendChild(textNode);  //将文本子节点添加为opt子元素，即显示值
+				var arr = text.split(",");
+				for (var i = 0; i < arr.length; i++) { //遍历所有province
+					var opt = document.createElement("option");
+					opt.value = arr[i]; //设置opt的实际值
+					var textNode = document.createTextNode(arr[i]); //创建一个文本子节点
+					opt.appendChild(textNode); //将文本子节点添加为opt子元素，即显示值
 					document.getElementById("p").appendChild(opt);
 				}
 			}
 		};
+		//给province选项框添加改变监听器，使用选择的身份名称请求CityServlet，从返回值中解析每个city，冰添加到city选项框中
+		var proSelect = document.getElementById("p");
+		proSelect.onchange = function() {
+			var xmlHttp = createXMLHttpRequest();
+			xmlHttp.open("POST", "<c:url value='/CityServlet'/>", true);
+			xmlHttp.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded");
+			xmlHttp.send("proName=" + proSelect.value);
+			xmlHttp.onreadystatechange = function() {
+				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+					//将select中除提示项以外所有option移除
+					var citySelect = document.getElementById("c"); 
+					var optionEleList=citySelect.getElementsByTagName("option");
+					//循环遍历option，移除非提示项
+					while(optionEleList.length>1){
+						citySelect.removeChild(optionEleList[1]);
+					}
+					var doc = xmlHttp.responseXML;
+					var cityEleList = doc.getElementsByTagName("city"); //得到city列表
+					for (var i = 0; i < cityEleList.length; i++) {
+						var cityEle = cityEleList[i];
+						var cityName;
+						if (window.addEventListener) { //处理浏览器差异
+							cityName = cityEle.textContent;
+						} else {
+							cityName = cityEle.text;
+						}
+						var opt = document.createElement("option");
+						opt.value = cityName;
+						var textNode = document.createTextNode(cityName);
+						opt.appendChild(textNode);
+						document.getElementById("c").appendChild(opt);
+					}
+				}
+			}
+		};
 	};
+
 	//创建异步对象 
 	function createXMLHttpRequest() {
 		try {
