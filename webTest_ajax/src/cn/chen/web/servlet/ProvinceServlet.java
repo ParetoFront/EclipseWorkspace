@@ -41,7 +41,7 @@ public class ProvinceServlet extends HttpServlet {
 					sb.append(",");
 				}
 			}
-			response.getWriter().println(sb);
+			response.getWriter().print(sb);   //注意此处必须用print，若用println，则字符串最后会带一个/r/n
 		} catch (DocumentException e) {
 			throw new RuntimeException(e);
 		}
