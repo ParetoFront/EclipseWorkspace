@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript" src="<c:url value='/ajaxUtils.js'/>"></script>
+
 <script type="text/javascript">
 	window.onload=function(){
 		var btn=document.getElementById("btn");
