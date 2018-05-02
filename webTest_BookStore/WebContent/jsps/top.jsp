@@ -31,7 +31,7 @@
   </head>
   
   <body>
-<h1 style="text-align: center;">ITCAST书店</h1>
+<h1 style="text-align: center;">小陈书店</h1>
 <div style="font-size: 10pt;">
 		您好：张三&nbsp;&nbsp;|&nbsp;&nbsp;
 		<a href="<c:url value='/jsps/cart/list.jsp'/>" target="body">我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
