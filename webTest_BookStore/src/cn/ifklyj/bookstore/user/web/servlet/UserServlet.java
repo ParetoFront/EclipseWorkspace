@@ -89,7 +89,8 @@ public class UserServlet extends BaseServlet {
 			String to=form.getEmail();  //收件人
 			String subject =props.getProperty("subject");  //主题
 			String content=props.getProperty("content");   //内容
-			content=MessageFormat.format(content, form.getClass());  //替换配置文件中的占位符{0}
+			//替换配置文件中的占位符{0}，替换完成后，在邮件中显示的超链接就会附带code的参数
+			content=MessageFormat.format(content, form.getCode());  
 			Session session=MailUtils.createSession(host, uname, pwd);
 			Mail mail=new Mail(from,to,subject,content);
 			try {
@@ -104,9 +105,41 @@ public class UserServlet extends BaseServlet {
 			throw new RuntimeException(e);
 		}
 	}
+	
 	public String active(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		System.out.println("您激活了");
-		return null;
+		 //获取激活码，对用service校验激活码，将激活结果保存到request域，转发到msg.jsp
+		String code=req.getParameter("code");
+		try {
+			userService.active(code);
+			req.setAttribute("msg", "恭喜您，您的账户已激活！");
+		} catch (UserException e) {
+			
+			req.setAttribute("msg", e.getMessage());
+		}
+		return "f:/jsps/msg.jsp";
+	}
+	//登录流程：
+	//若登录失败，则保存form到request转发到login.jsp，回显
+	//登陆成功，则保存用户信息到session，重定向到index.jsp
+	public String login(HttpServletRequest req, HttpServletResponse resp) 
+			throws ServletException, IOException, IllegalAccessException, InvocationTargetException {
+		User form=new User();
+		BeanUtils.populate(form, req.getParameterMap());
+		try {
+			User user=userService.login(form);
+			req.getSession().setAttribute("session_user",user);
+			return "r:/index.jsp";
+		} catch (Exception e) {
+			req.setAttribute("msg", e.getMessage());
+			req.setAttribute("form", form);
+			return "f:/jsps/user/login.jsp";
+		}
+		
+	}
+	public String quit(HttpServletRequest req, HttpServletResponse resp) 
+			throws ServletException, IOException {
+		req.getSession().invalidate();//销毁session
+		return "f:/index.jsp";
 	}
 }
