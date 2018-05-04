@@ -35,21 +35,22 @@ li {
 }
 
 #buy {
-	background: url(< c : url value = '/images/all.png'/ >) no-repeat;
-	display: inline-block;
-	background-position: 0 -902px;
-	margin-left: 30px;
-	height: 36px;
-	width: 146px;
-}
-
+		background: url(<c:url value='/images/all.png'/>) no-repeat;
+		display: inline-block;
+		
+		background-position: 0 -902px;
+		margin-left: 30px;
+		height: 36px;
+		width: 146px;
+	}
 #buy:HOVER {
-	background: url(< c : url value = '/images/all.png'/ >) no-repeat;
-	display: inline-block;
-	background-position: 0 -938px;
-	margin-left: 30px;
-	height: 36px;
-	width: 146px;
+		background: url(<c:url value='/images/all.png'/>) no-repeat;
+		display: inline-block;
+		
+		background-position: 0 -938px;
+		margin-left: 30px;
+		height: 36px;
+		width: 146px;
 }
 </style>
 </head>
@@ -60,16 +61,14 @@ li {
 	<c:choose>
 		<c:when
 			test="${empty sessionScope.cart or fn:length(sessionScope.cart.cartItems) eq 0 }">
-			<img src="<c:url value='/images/cart.png'/>" width="150"/>您的购物车为空
+			<img src="<c:url value='/images/cart.png'/>" width="150" />您的购物车为空
 		</c:when>
 		<c:otherwise>
-
-
 			<table border="1" width="100%" cellspacing="0" background="black">
 				<tr>
-					<td colspan="7" align="right" style="font-size: 15pt; font-weight: 900">
-						<a href="<c:url value='/CartServlet?method=clear'/>">清空购物车</a>
-					</td>
+					<td colspan="7" align="right"
+						style="font-size: 15pt; font-weight: 900"><a
+						href="<c:url value='/CartServlet?method=clear'/>">清空购物车</a></td>
 				</tr>
 				<tr>
 					<th>图片</th>
@@ -80,7 +79,7 @@ li {
 					<th>小计</th>
 					<th>操作</th>
 				</tr>
-				<!-- 因为Cart类中已经写了grtCartItems方法，此处写cartItems即可由页面直接获取 -->
+				<!-- 因为Cart类中已经写了getCartItems方法，此处写cartItems即可由页面直接获取 -->
 				<c:forEach items="${sessionScope.cart.cartItems }" var="cartItem">
 					<tr>
 						<td>
@@ -96,18 +95,18 @@ li {
 						<td><a
 							href="<c:url value='/CartServlet?method=delete&bid=${cartItem.book.bid }'/>">删除</a></td>
 					</tr>
+
+
+
 				</c:forEach>
-
-
-
 				<tr>
 					<td colspan="7" align="right"
 						style="font-size: 15pt; font-weight: 900">合计：${sessionScope.cart.total }元</td>
 				</tr>
 				<tr>
-					<td colspan="7" align="right" style="font-size: 15pt; font-weight: 900">
-						<a id="buy" href="<c:url value='/jsps/order/desc.jsp'/>"></a>
-					</td>
+					<td colspan="7" align="right"
+						style="font-size: 15pt; font-weight: 900"><a id="buy"
+						href="<c:url value='/OrderServlet?method=add'/>"></a></td>
 				</tr>
 			</table>
 		</c:otherwise>
