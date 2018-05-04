@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import cn.ifklyj.bookstore.cart.domain.Cart;
 import cn.ifklyj.bookstore.user.domain.User;
 import cn.ifklyj.bookstore.user.service.UserException;
 import cn.ifklyj.bookstore.user.service.UserService;
@@ -128,6 +129,7 @@ public class UserServlet extends BaseServlet {
 		BeanUtils.populate(form, req.getParameterMap());
 		try {
 			User user=userService.login(form);
+			req.getSession().setAttribute("cart", new Cart()); //为已登录的用户创建一个购物车
 			req.getSession().setAttribute("session_user",user);
 			return "r:/index.jsp";
 		} catch (Exception e) {
