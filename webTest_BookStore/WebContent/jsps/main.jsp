@@ -6,7 +6,7 @@
 <html>
 <head>
 
-<title>main</title>
+<title>小陈书店</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">

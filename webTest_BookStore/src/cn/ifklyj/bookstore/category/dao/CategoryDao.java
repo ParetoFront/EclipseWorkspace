@@ -22,4 +22,15 @@ public class CategoryDao {
 		}
 	}
 
+	public void add(Category category) {
+		try {
+			String sql = "insert into category values(?,?)";
+			Object[] params= {category.getCid(),category.getCname()};
+			qr.update(sql,params);
+		} catch (SQLException e) {
+
+			throw new RuntimeException(e);
+		}
+	}
+
 }

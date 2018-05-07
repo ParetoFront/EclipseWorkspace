@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+ <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -19,10 +19,11 @@
 <script language="javascript">
 var bar1 = new Q6MenuBar("bar1", "ITCAST网络图书商城");
 function load() {
-	bar1.colorStyle = 2;
-	bar1.config.imgDir = "<c:url value='/menu/img/'/>";
-	bar1.config.radioButton=false;
-	bar1.add("分类管理", "查看分类", "<c:url value='/adminjsps/admin/category/list.jsp'/>", "body");
+	bar1.colorStyle = 2;  //配色方案 
+	bar1.config.imgDir = "<c:url value='/menu/img/'/>";  //指定图片目录 
+	bar1.config.radioButton=false;  //菜单间是否相互排斥
+	//bar1.add(菜单名称，菜单项，点击时请求的地址，显示位置) 
+	bar1.add("分类管理", "查看分类", "<c:url value='/AdminCategoryServlet?method=findAll'/>", "body");
 	bar1.add("分类管理", "添加分类", "<c:url value='/adminjsps/admin/category/add.jsp'/>", "body");
 
 	bar1.add("图书管理", "查看图书", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
@@ -34,8 +35,8 @@ function load() {
 	bar1.add("订单管理", "未收货订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
 	bar1.add("订单管理", "已完成订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
 
-	var d = document.getElementById("menu");
-	d.innerHTML = bar1.toString();
+	var d = document.getElementById("menu");   //获取div元素
+	d.innerHTML = bar1.toString();  //将菜单内容置入div中 
 }
 </script>
 

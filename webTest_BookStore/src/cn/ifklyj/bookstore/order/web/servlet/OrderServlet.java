@@ -14,6 +14,7 @@ import cn.ifklyj.bookstore.cart.domain.Cart;
 import cn.ifklyj.bookstore.cart.domain.CartItem;
 import cn.ifklyj.bookstore.order.domain.Order;
 import cn.ifklyj.bookstore.order.domain.OrderItem;
+import cn.ifklyj.bookstore.order.service.OrderException;
 import cn.ifklyj.bookstore.order.service.OrderService;
 import cn.ifklyj.bookstore.user.domain.User;
 import cn.itcast.commons.CommonUtils;
@@ -63,6 +64,31 @@ public class OrderServlet extends BaseServlet {
 		return "f:/jsps/order/desc.jsp";
 		
 	}
-
-
+	//显示当前用户所有订单
+	//通过session获取用户id，根据uid查询订单，并把订单列表保存到request域中
+	public String myOrders(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		User user=(User) req.getSession().getAttribute("session_user");
+		List<Order> orderList=orderService.myOrders(user.getUid());
+		req.setAttribute("orderList", orderList);
+		return "f:/jsps/order/list.jsp";
+	}
+	//在订单列表页面，点击付款后，通过oid获取order，并转发的desc.jsp显示订单详情页
+	public String load(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		Order order=orderService.load(req.getParameter("oid"));
+		req.setAttribute("order", order);
+		return "f:jsps/order/desc.jsp";
+	}
+	public String confirm(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String oid=req.getParameter("oid");
+		try {
+			orderService.confirm(oid);
+			req.setAttribute("msg", "确认收货，交易成功！");
+		} catch (OrderException e) {
+			req.setAttribute("msg", e.getMessage());
+		}
+		return "f:/jsps/msg.jsp";
+	}
 }

@@ -1,6 +1,7 @@
 package cn.ifklyj.bookstore.order.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import cn.ifklyj.bookstore.order.dao.OrderDao;
 import cn.ifklyj.bookstore.order.domain.Order;
@@ -27,5 +28,24 @@ public class OrderService {
 			}
 			throw new RuntimeException(e);
 		}
+	}
+
+	public List<Order> myOrders(String uid) {
+		
+		return orderDao.findByUid(uid);
+	}
+
+	public Order load(String oid) {
+		return orderDao.load(oid);
+	}
+	/*
+	 * 用户点击确认收货后，在此检验订单状态是否为3（待收货状态）,若是，则修改状态为4
+	 */
+	public void confirm(String oid)  throws OrderException{
+		int state=orderDao.getStateByOid(oid);
+		if(state!=3) {
+			throw new OrderException("订单确认失败");
+		}
+		orderDao.updatestate(oid, 4);
 	}
 }

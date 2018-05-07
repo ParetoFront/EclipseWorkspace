@@ -11,4 +11,8 @@ public class CategoryService {
 	public List<Category> findAll() {
 		return categoryDao.findAll();
 	}
+
+	public void add(Category category) {
+		categoryDao.add(category);
+	}
 }
