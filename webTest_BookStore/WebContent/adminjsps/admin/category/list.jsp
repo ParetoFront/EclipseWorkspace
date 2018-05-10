@@ -32,8 +32,10 @@
     	<tr bordercolor="rgb(78,78,78)">
     		<td>${category.cname }</td>
     		<td>
-    		  <a href="<c:url value='/adminjsps/admin/category/mod.jsp'/>">修改</a> |
-    		  <a href="<c:url value='/adminjsps/admin/category/del.jsp'/>">删除</a>
+    		<!-- 修改分类：先将cid传到servlet，用load方法获取category对象，转发到mod页面显示，修改后再提交表单，再servlet中用mod进行存储 -->
+    		  <a href="<c:url value='/AdminCategoryServlet?method=load&cid=${category.cid }'/>">修改</a> |
+    		  <a href="<c:url value='/AdminCategoryServlet?method=delete&cid=${category.cid }'/>"
+    		  onclick="return confirm('您确认删除该分类吗？')">删除</a>
     		</td>
     	</tr>
     </c:forEach>
