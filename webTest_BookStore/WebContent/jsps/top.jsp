@@ -35,8 +35,9 @@
 <div style="font-size: 10pt;">
 <c:choose>
 	<c:when test="${empty sessionScope.session_user }">
-		<a href="<c:url value='/jsps/user/login.jsp'/>" target="_parent">登录</a> |&nbsp; 
+		<a href="<c:url value='/jsps/user/login.jsp'/>" target="_parent">用户登录</a> |&nbsp; 
 		<a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">注册</a>
+		
 	</c:when>
 	<c:otherwise>
 		您好：${sessionScope.session_user.username }&nbsp;&nbsp;|&nbsp;&nbsp;
