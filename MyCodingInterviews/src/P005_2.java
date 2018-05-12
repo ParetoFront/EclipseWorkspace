@@ -20,7 +20,7 @@ public class P005_2 {
 		goNext(listNode,list);
 		return list;
 	}
-	private void goNext(ListNode listNode,List list) {
+	private void goNext(ListNode listNode,List<Integer> list) {
 		if(listNode.next!=null) {
 			goNext(listNode.next,list);
 		}
