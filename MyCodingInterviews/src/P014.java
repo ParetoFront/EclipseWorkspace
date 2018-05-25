@@ -12,7 +12,6 @@ public class P014 {
 			System.out.println(i);
 		}
 	}
-
 	public int[] manageNums(int[] nums) {
 		if (nums == null || nums.length < 2) {
 			return nums;

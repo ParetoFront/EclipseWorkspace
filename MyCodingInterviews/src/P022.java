@@ -8,7 +8,7 @@ import org.junit.Test;
  * 序列4、5、3、2、1是该压栈序列对应的一个弹出序列，
  * 但4、3、5、1、2就不可能是该压棋序列的弹出序列。
  */
-public class P021 {
+public class P022 {
 	@Test
 	public void fun() {
 		int[] push = { 1, 2, 3, 4, 5 };

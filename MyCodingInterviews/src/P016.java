@@ -10,14 +10,14 @@ public class P016 {
 			tmp.next = new ListNode(i);
 			tmp = tmp.next;
 		}
-		ListNode newHead = reverseList2(head);
+		ListNode newHead = reverse(head);
 		while (newHead != null) {
 			System.out.println(newHead.val);
 			newHead = newHead.next;
 		}
 		
 	}
-	
+
 	/*
 	 * 递归实现,详见onenote笔记
 	 */
